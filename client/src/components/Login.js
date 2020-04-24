@@ -14,11 +14,11 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
-            .post('http://localhost:3300/api/login', state)
+            .post('http://localhost:3300/api/auth/login', state)
             .then((response) => {
                 localStorage.setItem('token', response.data.token);
                 setState({ username: '', password: '' });
-                history.push('/users');
+                history.push('/jokes');
             })
             .catch((error) => {
                 console.error(error);

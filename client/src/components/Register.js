@@ -14,11 +14,11 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
-            .post('http://localhost:3300/api/register', state)
+            .post('http://localhost:3300/api/auth/register', state)
             .then((response) => {
                 setState({ username: '', password: '', department: '' });
                 axios
-                    .post('http://localhost:3300/api/login', {
+                    .post('http://localhost:3300/api/auth/login', {
                             username: state.username, password: state.password
                         })
                     .then((response) => {
@@ -40,8 +40,6 @@ const Register = () => {
             <input type='text' id='username' name='username' value={state.username} onChange={handleChange}/>
             <label htmlFor='password'>Password:</label>
             <input type='password' id='password' name='password' value={state.password} onChange={handleChange}/>
-            <label htmlFor='department'>Department:</label>
-            <input type='text' id='department' name='department' value={state.department} onChange={handleChange}/>
             <input type='submit'/>
         </form>
     )

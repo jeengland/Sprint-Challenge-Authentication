@@ -9,7 +9,7 @@ const Jokes = () => {
     useEffect(() => {
         axiosWithAuth()
             .get('http://localhost:3300/api/jokes')
-            .then((response) => setJokes(response.data.jokes))
+            .then((response) => setJokes(response.data))
             .catch((error) => console.error(error))
     }, [])
     const handleLogout = () => {
@@ -19,13 +19,15 @@ const Jokes = () => {
     return (
         <div>
             <div onClick={handleLogout}>Logout</div>
+            <ul>
             {jokes && jokes.map((joke) => {
                 return (
-                    <div key={joke.id}>
-                        <p>{joke.joke}</p>
-                    </div>
-                )
+                    <li key={joke.id}>{joke.joke}</li>
+                    )
             })}
+            </ul>
         </div>
     )
 }
+
+export default Jokes;
